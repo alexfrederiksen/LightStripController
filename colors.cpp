@@ -21,10 +21,11 @@ namespace colors {
 	}
 
 	void convert_HSV2RGB(float h, float s, float v, color_rgb_t & rgb) {
+		// compute color vars
 		float c = s * v;
 		float x = c * (1.0f - fabs(fmod(h / 60.0f, 2.0f) - 1.0f));
 		float m = v - c;
-		
+		// categorize by every 60 degrees in hue
 		switch ((int) (h / 60.0f)) {
 				// 0 <= h < 60
 			case 0: rgb.set(c, x, 0.0f);
@@ -45,7 +46,7 @@ namespace colors {
 			case 5: rgb.set(c, 0.0f, x);
 				break;
 		}
-
+		// apply offset
 		rgb.set(rgb.r + m,
 			rgb.g + m,
 			rgb.b + m);
