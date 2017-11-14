@@ -18,8 +18,9 @@ void SnakeController::update() {
 	head_pos = fmod(head_pos + speed, leds.count);
 	// draw new snake
 	colors::color_rgb_t rgb;
+	float interval = 360.0 / (float) length;
 	for (int i = 0; i < length; i++) {
-		colors::convert_HSV2RGB(10.0f * i, 1.0f, 1.0f, rgb);
+		colors::convert_HSV2RGB(interval * i, 1.0f, 1.0f, rgb);
 		leds.set_led(((int) head_pos - i + leds.count) % leds.count, 
 			(int) (rgb.r * 255), 
 			(int) (rgb.g * 255), 
