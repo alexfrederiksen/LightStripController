@@ -4,11 +4,21 @@
 
 namespace colors {
 
+	color_rgb_t::color_rgb_t() : r(0.0f), g(0.0f), b(0.0f) { }
+
+	color_rgb_t::color_rgb_t(float r, float g, float b) : 
+		r(r), g(g), b(b) { }
+
 	void color_rgb_t::set(float r, float g, float b) {
 		this -> r = r;
 		this -> g = g;
 		this -> b = b;
 	}
+
+	color_hsv_t::color_hsv_t() : h(0.0f), s(0.0f), v(0.0f) { }
+
+	color_hsv_t::color_hsv_t(float h, float s, float v) : 
+		h(h), s(s), v(v) { }
 
 	void color_hsv_t::set(float h, float s, float v) {
 		this -> h = h;
@@ -16,7 +26,7 @@ namespace colors {
 		this -> v = v;
 	}
 
-	void convert_HSV2RGB(color_hsv_t & hsv, color_rgb_t & rgb) {
+	void convert_HSV2RGB(const color_hsv_t & hsv, color_rgb_t & rgb) {
 		convert_HSV2RGB(hsv.h, hsv.s, hsv.v, rgb);
 	}
 
