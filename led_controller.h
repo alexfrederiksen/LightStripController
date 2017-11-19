@@ -22,26 +22,27 @@ class LedController {
 		LedController(led_strip_t & leds);
 		virtual void update() = 0;
 };
+namespace controllers {
+	class Snake : public LedController {
+		int length;
+		float speed;
+		float head_pos;
+	
+		public:
+			Snake(led_strip_t & leds, int length, float speed);
+			void update();
+	};
+	
+	class Scanner : public LedController {
+		int length;
+		float speed;
+		float step;
+		colors::color_hsv_t color;
 
-class SnakeController : public LedController {
-	int length;
-	float speed;
-	float head_pos;
-
-	public:
-		SnakeController(led_strip_t & leds, int length, float speed);
-		void update();
-};
-
-class ScannerController : public LedController {
-	int length;
-	float speed;
-	float head_pos;
-	colors::color_hsv_t color;
-
-	public:
-		ScannerController(led_strip_t & leds, int length, float speed, colors::color_hsv_t & color);
-		void update();
-};
+		public:
+			Scanner(led_strip_t & leds, int length, float speed, colors::color_hsv_t & color);
+			void update();
+	};
+}
 
 #endif
